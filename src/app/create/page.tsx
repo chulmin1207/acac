@@ -7,6 +7,8 @@ import Step1ServiceSelection from '@/components/steps/Step1ServiceSelection';
 import Step2CreativeInput from '@/components/steps/Step2CreativeInput';
 import Step3BriefGeneration from '@/components/steps/Step3BriefGeneration';
 import Step4ImageGeneration from '@/components/steps/Step4ImageGeneration';
+import Step5ChannelAdaptation from '@/components/steps/Step5ChannelAdaptation';
+import Step6ResultDownload from '@/components/steps/Step6ResultDownload';
 import { Sparkles } from 'lucide-react';
 
 const STEPS = [
@@ -47,16 +49,8 @@ export default function CreatePage() {
             {currentStep === 2 && <Step2CreativeInput />}
             {currentStep === 3 && <Step3BriefGeneration />}
             {currentStep === 4 && <Step4ImageGeneration />}
-            {currentStep === 5 && (
-              <div className="text-center py-20 text-gray-500">
-                Step 5: 채널 적응 (Phase 3에서 구현)
-              </div>
-            )}
-            {currentStep === 6 && (
-              <div className="text-center py-20 text-gray-500">
-                Step 6: 다운로드 (Phase 3에서 구현)
-              </div>
-            )}
+            {currentStep === 5 && <Step5ChannelAdaptation />}
+            {currentStep === 6 && <Step6ResultDownload />}
           </div>
         </div>
       </main>
