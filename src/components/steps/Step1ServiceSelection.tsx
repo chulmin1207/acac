@@ -1,0 +1,136 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useStepFlow } from '@/hooks/useStepFlow';
+import type { Service } from '@/types';
+import { Sparkles } from 'lucide-react';
+
+export default function Step1ServiceSelection() {
+  const { selectedService, setSelectedService, nextStep } = useStepFlow();
+  const [services, setServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  const fetchServices = async () => {
+    try {
+      const response = await fetch('/api/services');
+      if (response.ok) {
+        const data = await response.json();
+        setServices(data.filter((s: Service) => s.isActive));
+      }
+    } catch (error) {
+      console.error('Failed to fetch services:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSelectService = (service: Service) => {
+    setSelectedService(service);
+  };
+
+  const handleNext = () => {
+    if (selectedService) {
+      nextStep();
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="max-w-5xl mx-auto">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          서비스 선택
+        </h2>
+        <p className="text-gray-600">
+          광고 소재를 생성할 서비스를 선택하세요
+        </p>
+      </div>
+
+      {services.length === 0 ? (
+        <div className="text-center py-12 text-gray-500">
+          <p>등록된 서비스가 없습니다.</p>
+          <p className="text-sm mt-2">관리자 페이지에서 서비스를 추가해주세요.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {services.map((service) => (
+            <button
+              key={service.id}
+              onClick={() => handleSelectService(service)}
+              className={`
+                p-6 rounded-xl border-2 transition-all text-left
+                ${
+                  selectedService?.id === service.id
+                    ? 'border-blue-600 bg-blue-50 shadow-lg'
+                    : 'border-gray-200 bg-white hover:border-blue-300 hover:shadow-md'
+                }
+              `}
+            >
+              {service.thumbnail && (
+                <div className="w-full h-32 mb-4 bg-gray-100 rounded-lg overflow-hidden">
+                  <img
+                    src={service.thumbnail}
+                    alt={service.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="text-xl font-bold text-gray-900">
+                  {service.name}
+                </h3>
+                {selectedService?.id === service.id && (
+                  <Sparkles className="w-5 h-5 text-blue-600" />
+                )}
+              </div>
+
+              <p className="text-sm text-gray-600 mb-3">
+                {service.description}
+              </p>
+
+              <div className="flex flex-wrap gap-1">
+                {service.keywords.slice(0, 3).map((keyword, idx) => (
+                  <span
+                    key={idx}
+                    className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded"
+                  >
+                    #{keyword}
+                  </span>
+                ))}
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="flex justify-end">
+        <button
+          onClick={handleNext}
+          disabled={!selectedService}
+          className={`
+            px-8 py-3 rounded-lg font-semibold transition-all
+            ${
+              selectedService
+                ? 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg'
+                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+            }
+          `}
+        >
+          다음 단계
+        </button>
+      </div>
+    </div>
+  );
+}

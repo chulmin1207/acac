@@ -1,0 +1,118 @@
+[
+  {
+    "id": "naver-gfa-main",
+    "name": "네이버 GFA 메인",
+    "platform": "naver",
+    "sizes": [
+      {
+        "width": 1250,
+        "height": 560,
+        "label": "메인 배너",
+        "aspectRatio": "1250:560"
+      }
+    ],
+    "layoutConfig": {
+      "textPosition": "center",
+      "textAlign": "center",
+      "ctaPosition": "bottom-center",
+      "backgroundExpand": true,
+      "productReposition": false
+    },
+    "isActive": true,
+    "createdAt": "2026-02-06T00:00:00.000Z",
+    "updatedAt": "2026-02-06T00:00:00.000Z"
+  },
+  {
+    "id": "meta-feed",
+    "name": "메타 피드",
+    "platform": "meta",
+    "sizes": [
+      {
+        "width": 1080,
+        "height": 1350,
+        "label": "피드 4:5",
+        "aspectRatio": "4:5"
+      },
+      {
+        "width": 1080,
+        "height": 1080,
+        "label": "피드 1:1",
+        "aspectRatio": "1:1"
+      }
+    ],
+    "layoutConfig": {
+      "textPosition": "bottom",
+      "textAlign": "left",
+      "ctaPosition": "bottom-right",
+      "backgroundExpand": true,
+      "productReposition": true
+    },
+    "isActive": true,
+    "createdAt": "2026-02-06T00:00:00.000Z",
+    "updatedAt": "2026-02-06T00:00:00.000Z"
+  },
+  {
+    "id": "google-demandgen",
+    "name": "구글 디맨드젠",
+    "platform": "google",
+    "sizes": [
+      {
+        "width": 1200,
+        "height": 628,
+        "label": "가로형",
+        "aspectRatio": "1.91:1"
+      },
+      {
+        "width": 1200,
+        "height": 1200,
+        "label": "정사각형",
+        "aspectRatio": "1:1"
+      },
+      {
+        "width": 960,
+        "height": 1200,
+        "label": "세로형",
+        "aspectRatio": "4:5"
+      }
+    ],
+    "layoutConfig": {
+      "textPosition": "top-left",
+      "textAlign": "left",
+      "ctaPosition": "bottom-right",
+      "backgroundExpand": true,
+      "productReposition": true
+    },
+    "isActive": true,
+    "createdAt": "2026-02-06T00:00:00.000Z",
+    "updatedAt": "2026-02-06T00:00:00.000Z"
+  },
+  {
+    "id": "kakao-moment",
+    "name": "카카오 모먼트",
+    "platform": "kakao",
+    "sizes": [
+      {
+        "width": 800,
+        "height": 800,
+        "label": "정사각형",
+        "aspectRatio": "1:1"
+      },
+      {
+        "width": 1200,
+        "height": 628,
+        "label": "가로형",
+        "aspectRatio": "1.91:1"
+      }
+    ],
+    "layoutConfig": {
+      "textPosition": "center",
+      "textAlign": "center",
+      "ctaPosition": "bottom-center",
+      "backgroundExpand": true,
+      "productReposition": false
+    },
+    "isActive": true,
+    "createdAt": "2026-02-06T00:00:00.000Z",
+    "updatedAt": "2026-02-06T00:00:00.000Z"
+  }
+]

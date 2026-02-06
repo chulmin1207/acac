@@ -1,0 +1,14 @@
+{
+  "apiKeys": {
+    "gemini": "",
+    "anthropic": ""
+  },
+  "upload": {
+    "maxFileSizeMB": 10,
+    "allowedMimeTypes": ["image/png", "image/jpeg", "image/webp"]
+  },
+  "generation": {
+    "imageCount": 3,
+    "maxRetries": 3
+  }
+}

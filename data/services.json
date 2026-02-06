@@ -1,0 +1,13 @@
+[
+  {
+    "id": "snack24h",
+    "name": "스낵24h",
+    "description": "24시간 야식 배달 서비스",
+    "category": "Food Delivery",
+    "keywords": ["야식", "배달", "24시간", "치킨", "피자", "야간배달"],
+    "thumbnail": "/images/services/snack24h.png",
+    "isActive": true,
+    "createdAt": "2026-02-06T00:00:00.000Z",
+    "updatedAt": "2026-02-06T00:00:00.000Z"
+  }
+]
