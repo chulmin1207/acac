@@ -50,7 +50,7 @@ export async function createService(
 
   const newService: Service = {
     ...data,
-    id: data.id || uuidv4(),
+    id: uuidv4(),
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };

@@ -22,9 +22,7 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
     async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.sub || '';
-      }
+      // Add custom fields to session if needed
       return session;
     },
   },

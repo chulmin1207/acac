@@ -6,10 +6,11 @@ import { getChannelById, updateChannel, deleteChannel } from '@/lib/db/channels'
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const channel = await getChannelById(params.id);
+    const { id } = await params;
+    const channel = await getChannelById(id);
 
     if (!channel) {
       return NextResponse.json(
@@ -20,7 +21,7 @@ export async function GET(
 
     return NextResponse.json(channel);
   } catch (error) {
-    console.error(`GET /api/channels/${params.id} error:`, error);
+    console.error('GET /api/channels/:id error:', error);
     return NextResponse.json(
       { error: 'Failed to fetch channel' },
       { status: 500 }
@@ -33,12 +34,13 @@ export async function GET(
  */
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
 
-    const channel = await updateChannel(params.id, body);
+    const channel = await updateChannel(id, body);
 
     if (!channel) {
       return NextResponse.json(
@@ -49,7 +51,7 @@ export async function PATCH(
 
     return NextResponse.json(channel);
   } catch (error) {
-    console.error(`PATCH /api/channels/${params.id} error:`, error);
+    console.error('PATCH /api/channels/:id error:', error);
     return NextResponse.json(
       { error: 'Failed to update channel' },
       { status: 500 }
@@ -62,10 +64,11 @@ export async function PATCH(
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const success = await deleteChannel(params.id);
+    const { id } = await params;
+    const success = await deleteChannel(id);
 
     if (!success) {
       return NextResponse.json(
@@ -76,7 +79,7 @@ export async function DELETE(
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error(`DELETE /api/channels/${params.id} error:`, error);
+    console.error('DELETE /api/channels/:id error:', error);
     return NextResponse.json(
       { error: 'Failed to delete channel' },
       { status: 500 }

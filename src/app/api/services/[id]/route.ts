@@ -6,10 +6,11 @@ import { getServiceById, updateService, deleteService } from '@/lib/db/services'
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const service = await getServiceById(params.id);
+    const { id } = await params;
+    const service = await getServiceById(id);
 
     if (!service) {
       return NextResponse.json(
@@ -20,7 +21,7 @@ export async function GET(
 
     return NextResponse.json(service);
   } catch (error) {
-    console.error(`GET /api/services/${params.id} error:`, error);
+    console.error('GET /api/services/:id error:', error);
     return NextResponse.json(
       { error: 'Failed to fetch service' },
       { status: 500 }
@@ -33,12 +34,13 @@ export async function GET(
  */
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
 
-    const service = await updateService(params.id, body);
+    const service = await updateService(id, body);
 
     if (!service) {
       return NextResponse.json(
@@ -49,7 +51,7 @@ export async function PATCH(
 
     return NextResponse.json(service);
   } catch (error) {
-    console.error(`PATCH /api/services/${params.id} error:`, error);
+    console.error('PATCH /api/services/:id error:', error);
     return NextResponse.json(
       { error: 'Failed to update service' },
       { status: 500 }
@@ -62,10 +64,11 @@ export async function PATCH(
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const success = await deleteService(params.id);
+    const { id } = await params;
+    const success = await deleteService(id);
 
     if (!success) {
       return NextResponse.json(
@@ -76,7 +79,7 @@ export async function DELETE(
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error(`DELETE /api/services/${params.id} error:`, error);
+    console.error('DELETE /api/services/:id error:', error);
     return NextResponse.json(
       { error: 'Failed to delete service' },
       { status: 500 }

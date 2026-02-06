@@ -58,7 +58,7 @@ export async function createChannel(
 
   const newChannel: Channel = {
     ...data,
-    id: data.id || uuidv4(),
+    id: uuidv4(),
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
