@@ -1,0 +1,105 @@
+{
+  "snack24": {
+    "hooks": [
+      { "id": "snack_price", "type": "cost_saving", "hook_text": "편의점보다 최대 20% 저렴", "metric_value": 20, "metric_unit": "percent_discount", "emotional_angle": "합리적", "priority_score": 8, "platform_boost": { "naver": 2, "meta": 0, "youtube": 0 } },
+      { "id": "snack_variety", "type": "product_scale", "hook_text": "5,000가지 간식, 골라 먹는 재미", "metric_value": 5000, "metric_unit": "product_count", "emotional_angle": "풍요로움", "priority_score": 9, "platform_boost": { "naver": 1, "meta": 1, "youtube": 0 } },
+      { "id": "snack_zero_cost", "type": "zero_friction", "hook_text": "도입비·관리비·배송비 전부 0원", "metric_value": 0, "metric_unit": "won", "emotional_angle": "부담없음", "priority_score": 9, "platform_boost": { "naver": 2, "meta": 0, "youtube": 0 } },
+      { "id": "snack_satisfaction", "type": "social_proof", "hook_text": "고객사 만족도 95%", "metric_value": 95, "metric_unit": "percent", "emotional_angle": "신뢰", "priority_score": 7, "platform_boost": { "naver": 1, "meta": 0, "youtube": 0 } },
+      { "id": "snack_employee_save", "type": "cost_saving", "hook_text": "직원 개인 간식비 34% 절감", "metric_value": 34, "metric_unit": "percent_saving", "emotional_angle": "실속", "priority_score": 7, "platform_boost": { "naver": 1, "meta": 0, "youtube": 0 } },
+      { "id": "snack_curation", "type": "convenience", "hook_text": "직원이 앱으로 직접 간식 선택", "emotional_angle": "자율성", "priority_score": 6, "platform_boost": { "naver": 0, "meta": 1, "youtube": 1 } },
+      { "id": "snack_setup", "type": "convenience", "hook_text": "배송부터 진열까지 전담 매니저가 원스톱", "emotional_angle": "편리함", "priority_score": 8, "platform_boost": { "naver": 0, "meta": 0, "youtube": 1 } },
+      { "id": "snack_scene", "type": "emotional", "hook_text": "탕비실에서 동료들과 간식 나눠 먹는 소소한 행복", "emotional_angle": "공감", "priority_score": 5, "platform_boost": { "naver": 0, "meta": 2, "youtube": 3 } }
+    ],
+    "employee_voices": [
+      { "quote": "탕비실에 좋아하는 간식이 가득하니 회사 오는 게 즐거워요", "emotion": "joy" },
+      { "quote": "동료들과 신상 과자 나눠 먹으며 더 가까워진 느낌", "emotion": "connection" },
+      { "quote": "냉장고에서 갓 꺼낸 콜라가 얼마나 시원한지 아세요?", "emotion": "satisfaction" }
+    ],
+    "hr_voices": [
+      { "quote": "간식구성 설정만 하면 자동 큐레이션이라 편해요", "emotion": "relief" }
+    ],
+    "visual_keywords": ["스낵바", "탕비실", "과자", "음료", "냉장고", "진열", "직원 간식시간"],
+    "image_mood": ["활기찬", "풍요로운", "컬러풀", "사무실 일상"]
+  },
+  "breakfast24": {
+    "hooks": [
+      { "id": "breakfast_delivery", "type": "convenience", "hook_text": "새벽 배송 + 냉장고 진열까지 완료", "emotional_angle": "편리함", "priority_score": 9, "platform_boost": { "naver": 0, "meta": 0, "youtube": 1 } },
+      { "id": "breakfast_free_delivery", "type": "zero_friction", "hook_text": "배송비 0원", "metric_value": 0, "emotional_angle": "부담없음", "priority_score": 7, "platform_boost": { "naver": 2, "meta": 0, "youtube": 0 } },
+      { "id": "breakfast_cold_chain", "type": "quality", "hook_text": "풀 콜드체인으로 신선함 보장", "emotional_angle": "안심", "priority_score": 7, "platform_boost": { "naver": 1, "meta": 0, "youtube": 0 } },
+      { "id": "breakfast_menu_variety", "type": "product_scale", "hook_text": "매일 다른 메뉴, 월 단위 자유 선택", "emotional_angle": "기대감", "priority_score": 8, "platform_boost": { "naver": 0, "meta": 1, "youtube": 1 } },
+      { "id": "breakfast_vip", "type": "premium", "hook_text": "호텔 조식급 VIP 케이터링 가능", "emotional_angle": "프리미엄", "priority_score": 6, "platform_boost": { "naver": 0, "meta": 0, "youtube": 1 } },
+      { "id": "breakfast_equipment", "type": "zero_friction", "hook_text": "냉장 쇼케이스 무상 대여", "emotional_angle": "부담없음", "priority_score": 6, "platform_boost": { "naver": 1, "meta": 0, "youtube": 0 } },
+      { "id": "breakfast_morning_scene", "type": "emotional", "hook_text": "출근하니 든든한 아침이 준비되어 있는 회사", "emotional_angle": "따뜻함", "priority_score": 5, "platform_boost": { "naver": 0, "meta": 2, "youtube": 3 } }
+    ],
+    "employee_voices": [
+      { "quote": "직원들이 '내일 아침은 뭐예요?' 하고 기대해요!", "emotion": "anticipation" },
+      { "quote": "회사에 다양한 조식이 배송오니까 편의점 갈 필요가 없어요", "emotion": "convenience" }
+    ],
+    "hr_voices": [
+      { "quote": "배송부터 냉장고 진열까지 해주니 업무시간이 확실히 줄었어요", "emotion": "relief" },
+      { "quote": "외부 방문자들이 아침 차려진 걸 보고 부러워해요", "emotion": "pride" }
+    ],
+    "visual_keywords": ["아침식사", "샐러드", "샌드위치", "냉장고", "새벽배송", "출근"],
+    "image_mood": ["신선한", "따뜻한", "건강한", "아침 햇살"]
+  },
+  "coffee24": {
+    "hooks": [
+      { "id": "coffee_price", "type": "cost_saving", "hook_text": "한 잔 198원, 카페 대비 96% 절감", "metric_value": 198, "metric_unit": "won_per_cup", "comparison_value": "카페 평균 4,500원", "emotional_angle": "충격적 가성비", "priority_score": 10, "platform_boost": { "naver": 2, "meta": 1, "youtube": 1 } },
+      { "id": "coffee_premium_beans", "type": "quality", "hook_text": "테라로사·앤트러사이트 등 프리미엄 원두", "emotional_angle": "프리미엄", "priority_score": 8, "platform_boost": { "naver": 0, "meta": 1, "youtube": 1 } },
+      { "id": "coffee_machine", "type": "quality", "hook_text": "스위스 유라(JURA) 등 하이엔드 커피머신", "emotional_angle": "프리미엄", "priority_score": 7, "platform_boost": { "naver": 0, "meta": 0, "youtube": 2 } },
+      { "id": "coffee_one_stop", "type": "convenience", "hook_text": "렌탈·설치·원두·청소·정산 원스톱", "emotional_angle": "편리함", "priority_score": 8, "platform_boost": { "naver": 1, "meta": 0, "youtube": 0 } },
+      { "id": "coffee_free_care", "type": "zero_friction", "hook_text": "전문가 정기 방문 케어 무료", "metric_value": 0, "emotional_angle": "부담없음", "priority_score": 7, "platform_boost": { "naver": 1, "meta": 0, "youtube": 0 } },
+      { "id": "coffee_trial", "type": "zero_friction", "hook_text": "2주 무료 체험 가능", "metric_value": 14, "metric_unit": "days_free", "emotional_angle": "리스크제로", "priority_score": 8, "platform_boost": { "naver": 1, "meta": 1, "youtube": 1 } },
+      { "id": "coffee_scale", "type": "social_proof", "hook_text": "5,500개+ 고객사가 선택", "metric_value": 5500, "emotional_angle": "신뢰", "priority_score": 6, "platform_boost": { "naver": 1, "meta": 0, "youtube": 0 } },
+      { "id": "coffee_rental_price", "type": "cost_saving", "hook_text": "월 19,800원부터 시작", "metric_value": 19800, "metric_unit": "won_monthly", "emotional_angle": "합리적", "priority_score": 7, "platform_boost": { "naver": 2, "meta": 0, "youtube": 0 } },
+      { "id": "coffee_scene", "type": "emotional", "hook_text": "카페 안 가도 사무실에서 바리스타급 커피 한 잔", "emotional_angle": "여유", "priority_score": 5, "platform_boost": { "naver": 0, "meta": 2, "youtube": 3 } }
+    ],
+    "employee_voices": [
+      { "quote": "카페를 가지 않아도 사무실에서 맛있는 원두커피를 즐길 수 있어요", "emotion": "satisfaction" }
+    ],
+    "hr_voices": [
+      { "quote": "지점별 맞춤 머신과 원두를 추천받아 3년째 이용 중", "emotion": "trust" },
+      { "quote": "신경쓰지 않아도 모두 다 해주는 커피24 서비스에 만족", "emotion": "relief" }
+    ],
+    "visual_keywords": ["커피머신", "원두", "에스프레소", "크레마", "아이스아메리카노", "사무실카페"],
+    "image_mood": ["세련된", "따뜻한", "프리미엄", "카페 분위기"]
+  },
+  "birthday24": {
+    "hooks": [
+      { "id": "birthday_auto", "type": "convenience", "hook_text": "1회 세팅으로 매년 자동 발송", "metric_value": 1, "emotional_angle": "편리함", "priority_score": 9, "platform_boost": { "naver": 1, "meta": 0, "youtube": 0 } },
+      { "id": "birthday_choice", "type": "engagement", "hook_text": "직원이 직접 받고 싶은 선물 선택", "emotional_angle": "자율성", "priority_score": 10, "platform_boost": { "naver": 0, "meta": 1, "youtube": 1 } },
+      { "id": "birthday_zero_cost", "type": "zero_friction", "hook_text": "수수료·관리비·배송비 전부 0원", "metric_value": 0, "emotional_angle": "부담없음", "priority_score": 8, "platform_boost": { "naver": 2, "meta": 0, "youtube": 0 } },
+      { "id": "birthday_products", "type": "product_scale", "hook_text": "2,000개+ 상품 중 자유 선택", "metric_value": 2000, "emotional_angle": "풍요로움", "priority_score": 7, "platform_boost": { "naver": 0, "meta": 1, "youtube": 0 } },
+      { "id": "birthday_social_proof", "type": "social_proof", "hook_text": "나이키·삼성엔지니어링·SM 등 1,500사 이용", "metric_value": 1500, "emotional_angle": "신뢰", "priority_score": 7, "platform_boost": { "naver": 1, "meta": 0, "youtube": 0 } },
+      { "id": "birthday_billing", "type": "convenience", "hook_text": "후불 자동 정산, 거래명세서 1장", "emotional_angle": "깔끔함", "priority_score": 6, "platform_boost": { "naver": 1, "meta": 0, "youtube": 0 } },
+      { "id": "birthday_no_contract", "type": "zero_friction", "hook_text": "무약정, 언제든 자유 이용", "emotional_angle": "자유로움", "priority_score": 6, "platform_boost": { "naver": 1, "meta": 0, "youtube": 0 } },
+      { "id": "birthday_multi_use", "type": "versatility", "hook_text": "생일·입사·명절·창립일·성과보상 다 가능", "emotional_angle": "만능", "priority_score": 8, "platform_boost": { "naver": 0, "meta": 0, "youtube": 1 } },
+      { "id": "birthday_emotion_scene", "type": "emotional", "hook_text": "생일에 원하는 선물이 도착하는 감동의 순간", "emotional_angle": "감동", "priority_score": 5, "platform_boost": { "naver": 0, "meta": 2, "youtube": 3 } }
+    ],
+    "employee_voices": [
+      { "quote": "받고 싶은 선물을 직접 고르니 만족도가 올라갔어요", "emotion": "satisfaction" }
+    ],
+    "hr_voices": [
+      { "quote": "생일 선물 보내기부터 정산까지 다 해줘서 업무 시간이 줄었어요", "emotion": "relief" },
+      { "quote": "여러 계열사를 한 번에 관리할 수 있어 편해요", "emotion": "efficiency" },
+      { "quote": "사내 설문에서 생일 복지가 긍정적으로 언급되고 있어요", "emotion": "validation" }
+    ],
+    "visual_keywords": ["선물상자", "알림톡", "축하카드", "기념일", "케이크", "꽃다발"],
+    "image_mood": ["따뜻한", "축하", "깔끔한UI", "감동"]
+  },
+  "shared_assets": {
+    "brand_trust_points": ["9,400+ 고객사", "80만+ 임직원 이용", "산업통상부장관상 수상", "FT 아시아태평양 고성장 기업 76위", "연매출 892억원(2024)"],
+    "target_audience": { "primary": "HR 담당자/인사팀", "secondary": "총무팀/사무실 관리자", "tertiary": "C-Level" }
+  },
+  "hook_selection_rules": [
+    { "rule": "effective_score = priority_score + platform_boost[selected_platform]" },
+    { "rule": "1순위 훅 = 헤드라인" },
+    { "rule": "2순위 훅 = 서브/본문" },
+    { "rule": "1~2순위 type이 같으면 다른 type 선택" },
+    { "rule": "social_proof 훅은 본문 마지막에 항상 포함" },
+    { "rule": "메타: employee_voices 우선(공감형)" },
+    { "rule": "네이버: hr_voices 우선(신뢰형)+숫자 중심" },
+    { "rule": "유튜브: employee_voices로 시작, hr_voices로 마무리" },
+    { "rule": "유튜브/릴스: emotional 타입 훅을 오프닝에 활용" }
+  ]
+}

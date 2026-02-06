@@ -1,116 +1,147 @@
 [
   {
-    "id": "naver-gfa-main",
-    "name": "네이버 GFA 메인",
-    "platform": "naver",
-    "sizes": [
-      {
-        "width": 1250,
-        "height": 560,
-        "label": "메인 배너",
-        "aspectRatio": "1250:560"
-      }
-    ],
-    "layoutConfig": {
-      "textPosition": "center",
-      "textAlign": "center",
-      "ctaPosition": "bottom-center",
-      "backgroundExpand": true,
-      "productReposition": false
-    },
-    "isActive": true,
-    "createdAt": "2026-02-06T00:00:00.000Z",
-    "updatedAt": "2026-02-06T00:00:00.000Z"
-  },
-  {
     "id": "meta-feed",
-    "name": "메타 피드",
+    "name": "메타 피드 (인스타/페북)",
     "platform": "meta",
+    "adType": "single_image",
     "sizes": [
-      {
-        "width": 1080,
-        "height": 1350,
-        "label": "피드 4:5",
-        "aspectRatio": "4:5"
-      },
-      {
-        "width": 1080,
-        "height": 1080,
-        "label": "피드 1:1",
-        "aspectRatio": "1:1"
-      }
+      { "width": 1080, "height": 1350, "label": "피드 4:5", "aspectRatio": "4:5" },
+      { "width": 1080, "height": 1080, "label": "피드 1:1", "aspectRatio": "1:1" }
     ],
-    "layoutConfig": {
-      "textPosition": "bottom",
-      "textAlign": "left",
-      "ctaPosition": "bottom-right",
-      "backgroundExpand": true,
-      "productReposition": true
-    },
+    "copyLimits": { "headline_max": 40, "body_max": 125, "link_desc_max": 30 },
+    "tone": "casual_friendly",
+    "copyStyle": "짧고 임팩트, 이모지 가능, 구어체",
     "isActive": true,
     "createdAt": "2026-02-06T00:00:00.000Z",
     "updatedAt": "2026-02-06T00:00:00.000Z"
   },
   {
-    "id": "google-demandgen",
-    "name": "구글 디맨드젠",
-    "platform": "google",
+    "id": "meta-carousel",
+    "name": "메타 캐러셀",
+    "platform": "meta",
+    "adType": "carousel",
     "sizes": [
-      {
-        "width": 1200,
-        "height": 628,
-        "label": "가로형",
-        "aspectRatio": "1.91:1"
-      },
-      {
-        "width": 1200,
-        "height": 1200,
-        "label": "정사각형",
-        "aspectRatio": "1:1"
-      },
-      {
-        "width": 960,
-        "height": 1200,
-        "label": "세로형",
-        "aspectRatio": "4:5"
-      }
+      { "width": 1080, "height": 1080, "label": "캐러셀 1:1", "aspectRatio": "1:1" }
     ],
-    "layoutConfig": {
-      "textPosition": "top-left",
-      "textAlign": "left",
-      "ctaPosition": "bottom-right",
-      "backgroundExpand": true,
-      "productReposition": true
-    },
+    "copyLimits": { "headline_per_card": 40, "body_max": 125, "cards_min": 2, "cards_max": 10 },
+    "tone": "casual_friendly",
+    "copyStyle": "3~5장 최적, 스토리텔링 흐름",
     "isActive": true,
     "createdAt": "2026-02-06T00:00:00.000Z",
     "updatedAt": "2026-02-06T00:00:00.000Z"
   },
   {
-    "id": "kakao-moment",
-    "name": "카카오 모먼트",
-    "platform": "kakao",
+    "id": "meta-reels",
+    "name": "메타 릴스/숏폼",
+    "platform": "meta",
+    "adType": "reels",
     "sizes": [
-      {
-        "width": 800,
-        "height": 800,
-        "label": "정사각형",
-        "aspectRatio": "1:1"
-      },
-      {
-        "width": 1200,
-        "height": 628,
-        "label": "가로형",
-        "aspectRatio": "1.91:1"
-      }
+      { "width": 1080, "height": 1920, "label": "릴스 9:16", "aspectRatio": "9:16" }
     ],
-    "layoutConfig": {
-      "textPosition": "center",
-      "textAlign": "center",
-      "ctaPosition": "bottom-center",
-      "backgroundExpand": true,
-      "productReposition": false
-    },
+    "copyLimits": { "duration_sec": [15, 30, 60], "recommended_duration": 20 },
+    "tone": "casual_friendly",
+    "copyStyle": "3초 안에 훅, 세로형 풀스크린",
+    "isActive": true,
+    "createdAt": "2026-02-06T00:00:00.000Z",
+    "updatedAt": "2026-02-06T00:00:00.000Z"
+  },
+  {
+    "id": "naver-sa",
+    "name": "네이버 검색광고 (SA)",
+    "platform": "naver",
+    "adType": "search_ad",
+    "sizes": [],
+    "copyLimits": { "title_max": 15, "description_max": 45 },
+    "extensions": ["사이트링크", "전화번호", "추가설명"],
+    "tone": "informative_trustworthy",
+    "copyStyle": "숫자+키워드 매칭, 검색 의도 직격",
+    "isActive": true,
+    "createdAt": "2026-02-06T00:00:00.000Z",
+    "updatedAt": "2026-02-06T00:00:00.000Z"
+  },
+  {
+    "id": "naver-gfa",
+    "name": "네이버 성과형 디스플레이 (GFA)",
+    "platform": "naver",
+    "adType": "display_gfa",
+    "sizes": [
+      { "width": 1200, "height": 628, "label": "네이티브 가로형", "aspectRatio": "1200:628" },
+      { "width": 1080, "height": 1080, "label": "네이티브 1:1", "aspectRatio": "1:1" }
+    ],
+    "copyLimits": { "title_max": 25, "description_max": 45 },
+    "tone": "informative_trustworthy",
+    "copyStyle": "정보성 톤, 네이버 뉴스/카페/밴드 지면",
+    "isActive": true,
+    "createdAt": "2026-02-06T00:00:00.000Z",
+    "updatedAt": "2026-02-06T00:00:00.000Z"
+  },
+  {
+    "id": "naver-brand",
+    "name": "네이버 브랜드검색",
+    "platform": "naver",
+    "adType": "brand_search",
+    "sizes": [],
+    "copyLimits": { "main_title_max": 30, "sub_title_max": 40, "description_max": 100 },
+    "tone": "informative_trustworthy",
+    "copyStyle": "공식 신뢰감+서비스 라인업 노출",
+    "isActive": true,
+    "createdAt": "2026-02-06T00:00:00.000Z",
+    "updatedAt": "2026-02-06T00:00:00.000Z"
+  },
+  {
+    "id": "youtube-instream",
+    "name": "유튜브 인스트림 광고",
+    "platform": "youtube",
+    "adType": "skippable_instream",
+    "sizes": [
+      { "width": 1920, "height": 1080, "label": "16:9 HD", "aspectRatio": "16:9" }
+    ],
+    "copyLimits": { "duration_sec": [15, 30, 60], "skip_after_sec": 5, "companion_banner": "300x60" },
+    "tone": "engaging_storytelling",
+    "copyStyle": "5초 안에 브랜드+훅, 스킵 전 핵심 전달",
+    "isActive": true,
+    "createdAt": "2026-02-06T00:00:00.000Z",
+    "updatedAt": "2026-02-06T00:00:00.000Z"
+  },
+  {
+    "id": "youtube-shorts",
+    "name": "유튜브 쇼츠",
+    "platform": "youtube",
+    "adType": "shorts",
+    "sizes": [
+      { "width": 1080, "height": 1920, "label": "쇼츠 9:16", "aspectRatio": "9:16" }
+    ],
+    "copyLimits": { "duration_sec": [15, 30, 60] },
+    "tone": "engaging_storytelling",
+    "copyStyle": "네이티브 쇼츠 느낌, 광고 티 최소화, 3초 훅",
+    "isActive": true,
+    "createdAt": "2026-02-06T00:00:00.000Z",
+    "updatedAt": "2026-02-06T00:00:00.000Z"
+  },
+  {
+    "id": "youtube-discovery",
+    "name": "유튜브 인피드 (디스커버리)",
+    "platform": "youtube",
+    "adType": "discovery",
+    "sizes": [],
+    "copyLimits": { "title_max": 100, "description_max": 500, "thumbnail_required": true },
+    "tone": "engaging_storytelling",
+    "copyStyle": "썸네일이 클릭률 결정, 호기심 유발 제목",
+    "isActive": true,
+    "createdAt": "2026-02-06T00:00:00.000Z",
+    "updatedAt": "2026-02-06T00:00:00.000Z"
+  },
+  {
+    "id": "youtube-bumper",
+    "name": "유튜브 범퍼 6초",
+    "platform": "youtube",
+    "adType": "bumper",
+    "sizes": [
+      { "width": 1920, "height": 1080, "label": "16:9 HD", "aspectRatio": "16:9" }
+    ],
+    "copyLimits": { "duration_sec": 6 },
+    "tone": "engaging_storytelling",
+    "copyStyle": "메시지 1개만, 브랜드 인지도용",
     "isActive": true,
     "createdAt": "2026-02-06T00:00:00.000Z",
     "updatedAt": "2026-02-06T00:00:00.000Z"
