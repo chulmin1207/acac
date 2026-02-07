@@ -22,13 +22,25 @@ export function ThemeToggle() {
   const currentTheme = theme === 'system' ? systemTheme : theme;
   const isDark = currentTheme === 'dark';
 
+  const handleToggle = () => {
+    // Cycle through: system -> light -> dark -> system
+    if (theme === 'system') {
+      // If currently using system, switch to opposite of current system theme
+      const newTheme = isDark ? 'light' : 'dark';
+      console.log('Theme toggle clicked (from system):', { current: 'system', systemTheme, new: newTheme });
+      setTheme(newTheme);
+    } else if (theme === 'light') {
+      console.log('Theme toggle clicked (from light):', { current: theme, new: 'dark' });
+      setTheme('dark');
+    } else {
+      console.log('Theme toggle clicked (from dark):', { current: theme, new: 'light' });
+      setTheme('light');
+    }
+  };
+
   return (
     <button
-      onClick={() => {
-        const newTheme = isDark ? 'light' : 'dark';
-        console.log('Theme toggle clicked:', { current: theme, new: newTheme });
-        setTheme(newTheme);
-      }}
+      onClick={handleToggle}
       className="fixed top-4 right-4 z-50 px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 shadow-lg hover:shadow-xl transition-all hover:scale-105 group flex items-center gap-3 min-w-[140px]"
       aria-label="Toggle theme"
     >

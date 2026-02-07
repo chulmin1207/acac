@@ -19,8 +19,8 @@ export default function RootLayout({
       <body className="antialiased bg-white dark:bg-gray-900 transition-colors">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
+          defaultTheme="system"
+          enableSystem={true}
           storageKey="acac-theme"
           disableTransitionOnChange={false}
         >
