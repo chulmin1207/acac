@@ -8,15 +8,23 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
   const router = useRouter();
 
+  // Check if we're on localhost (development mode)
+  const isDevelopment = typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
   useEffect(() => {
+    // Skip auth check in development
+    if (isDevelopment) return;
+
     if (status === 'loading') return;
 
     if (!session) {
       router.push('/');
     }
-  }, [session, status, router]);
+  }, [session, status, router, isDevelopment]);
 
-  if (status === 'loading') {
+  // Show loading spinner only in production
+  if (!isDevelopment && status === 'loading') {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
@@ -24,9 +32,21 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
     );
   }
 
-  if (!session) {
+  // In production, require session
+  if (!isDevelopment && !session) {
     return null;
   }
 
-  return <>{children}</>;
+  // Show dev mode banner on localhost
+  return (
+    <>
+      {isDevelopment && (
+        <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4">
+          <p className="font-bold">🔧 개발 모드</p>
+          <p className="text-sm">OAuth 미설정 상태입니다. localhost에서 인증 없이 테스트 가능합니다.</p>
+        </div>
+      )}
+      {children}
+    </>
+  );
 }

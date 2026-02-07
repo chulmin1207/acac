@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useStepFlow } from '@/hooks/useStepFlow';
-import { Upload, X, Loader2, CheckCircle } from 'lucide-react';
+import { Upload, X, Loader2, CheckCircle, Clipboard } from 'lucide-react';
 
 export default function Step2CreativeInput() {
   const {
+    selectedService,
     userInput,
     setUserInput,
     referenceImages,
@@ -15,12 +16,64 @@ export default function Step2CreativeInput() {
     setReferenceImageUrls,
     setReferenceAnalysis,
     nextStep,
+    prevStep,
   } = useStepFlow();
 
   const [uploading, setUploading] = useState(false);
   const [analyzing, setAnalyzing] = useState(false);
   const [analyzed, setAnalyzed] = useState(false);
   const [showAnalysis, setShowAnalysis] = useState(false);
+  const [isDragActive, setIsDragActive] = useState(false);
+  const [isPasteActive, setIsPasteActive] = useState(false);
+  const uploadAreaRef = useRef<HTMLDivElement>(null);
+
+  // Service-specific placeholders
+  const placeholders: Record<string, string> = {
+    snack24: '예: 신규 고객 유치 프로모션, 5,000가지 간식 중 자유 선택, 탕비실 분위기 강조',
+    breakfast24: '예: 새벽 배송 조식 서비스, 출근이 기대되는 아침, 신선함과 편리함 강조',
+    coffee24: '예: 커피머신 렌탈 프로모션, 한 잔 198원의 가성비, 사무실 카페 분위기',
+    birthday24: '예: 직원 생일 자동 관리 서비스, 원하는 선물 직접 선택, 감동의 순간 강조',
+  };
+
+  const placeholder = selectedService
+    ? placeholders[selectedService.id] || '광고 소재에 대한 설명을 입력하세요'
+    : '먼저 서비스를 선택해주세요';
+
+  // Handle paste event
+  useEffect(() => {
+    const handlePaste = (e: ClipboardEvent) => {
+      const items = e.clipboardData?.items;
+      if (!items) return;
+
+      const imageFiles: File[] = [];
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.startsWith('image/')) {
+          const file = items[i].getAsFile();
+          if (file) {
+            imageFiles.push(file);
+          }
+        }
+      }
+
+      if (imageFiles.length > 0) {
+        e.preventDefault();
+        setIsPasteActive(true);
+        setTimeout(() => setIsPasteActive(false), 600);
+        const fileList = createFileList(imageFiles);
+        handleFileUpload(fileList);
+      }
+    };
+
+    window.addEventListener('paste', handlePaste);
+    return () => window.removeEventListener('paste', handlePaste);
+  }, []);
+
+  // Create FileList from File array
+  const createFileList = (files: File[]): FileList => {
+    const dataTransfer = new DataTransfer();
+    files.forEach((file) => dataTransfer.items.add(file));
+    return dataTransfer.files;
+  };
 
   const handleFileUpload = async (files: FileList) => {
     if (files.length === 0) return;
@@ -47,6 +100,34 @@ export default function Step2CreativeInput() {
       alert('파일 업로드에 실패했습니다.');
     } finally {
       setUploading(false);
+    }
+  };
+
+  const handleDragEnter = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(false);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(false);
+
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      handleFileUpload(files);
     }
   };
 
@@ -99,7 +180,7 @@ export default function Step2CreativeInput() {
         <textarea
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          placeholder="예: 야식 배달 프로모션, 늦은 밤에도 빠르게 배달되는 서비스 강조"
+          placeholder={placeholder}
           rows={4}
           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
         />
@@ -112,16 +193,55 @@ export default function Step2CreativeInput() {
         </label>
 
         <div
-          className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-400 transition-colors cursor-pointer"
+          ref={uploadAreaRef}
+          className={`
+            relative border-2 border-dashed rounded-xl p-8 text-center cursor-pointer
+            transition-all duration-300 ease-in-out
+            ${
+              isDragActive || isPasteActive
+                ? 'border-blue-500 bg-blue-50 scale-105 shadow-lg ring-4 ring-blue-200 animate-pulse'
+                : uploading
+                ? 'border-green-400 bg-green-50 animate-pulse'
+                : 'border-gray-300 hover:border-blue-400 hover:bg-blue-50'
+            }
+          `}
           onClick={() => document.getElementById('file-input')?.click()}
+          onDragEnter={handleDragEnter}
+          onDragLeave={handleDragLeave}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
         >
-          <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-          <p className="text-sm text-gray-600 mb-1">
-            클릭하여 이미지 업로드
-          </p>
-          <p className="text-xs text-gray-400">
-            PNG, JPG, WebP (최대 10MB)
-          </p>
+          {uploading ? (
+            <>
+              <Loader2 className="w-12 h-12 text-green-500 mx-auto mb-3 animate-spin" />
+              <p className="text-sm text-green-600 font-semibold">
+                업로드 중...
+              </p>
+            </>
+          ) : (
+            <>
+              <div className="relative">
+                <Upload
+                  className={`w-12 h-12 mx-auto mb-3 transition-colors ${
+                    isDragActive || isPasteActive ? 'text-blue-500' : 'text-gray-400'
+                  }`}
+                />
+                {isPasteActive && (
+                  <Clipboard className="w-6 h-6 text-blue-500 absolute top-0 right-1/2 transform translate-x-12 -translate-y-2 animate-bounce" />
+                )}
+              </div>
+              <p className="text-sm text-gray-600 mb-1">
+                클릭 또는 드래그하여 이미지 업로드
+              </p>
+              <p className="text-xs text-gray-400 mb-2">
+                PNG, JPG, WebP (최대 10MB)
+              </p>
+              <p className="text-xs text-blue-500 font-semibold flex items-center justify-center gap-1">
+                <Clipboard className="w-3 h-3" />
+                이미지 복사 후 Ctrl+V (붙여넣기)로도 업로드 가능
+              </p>
+            </>
+          )}
           <input
             id="file-input"
             type="file"
@@ -141,14 +261,20 @@ export default function Step2CreativeInput() {
                 <img
                   src={URL.createObjectURL(file)}
                   alt={`Reference ${idx + 1}`}
-                  className="w-full h-32 object-cover rounded-lg"
+                  className="w-full h-32 object-cover rounded-lg border-2 border-green-400"
                 />
                 <button
-                  onClick={() => removeReferenceImage(idx)}
-                  className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    removeReferenceImage(idx);
+                  }}
+                  className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
                 >
                   <X className="w-4 h-4" />
                 </button>
+                <div className="absolute bottom-2 left-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
+                  {idx + 1}
+                </div>
               </div>
             ))}
           </div>
@@ -197,22 +323,19 @@ export default function Step2CreativeInput() {
       {/* Analysis Results */}
       {analyzed && showAnalysis && (
         <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 mb-8">
-          <h3 className="font-bold text-lg mb-4 text-purple-900">
+          <h3 className="text-lg font-bold text-purple-900 mb-4">
             레퍼런스 분석 결과
           </h3>
-          <div className="space-y-2 text-sm">
-            <p><span className="font-semibold">텍스트 배치:</span> {useStepFlow.getState().referenceAnalysis?.textPlacement}</p>
-            <p><span className="font-semibold">오브제 위치:</span> {useStepFlow.getState().referenceAnalysis?.objectPositions}</p>
-            <p><span className="font-semibold">레이아웃:</span> {useStepFlow.getState().referenceAnalysis?.layout}</p>
-            <p><span className="font-semibold">톤앤매너:</span> {useStepFlow.getState().referenceAnalysis?.toneAndManner}</p>
-          </div>
+          <pre className="text-sm text-gray-700 whitespace-pre-wrap">
+            {JSON.stringify(analyzed, null, 2)}
+          </pre>
         </div>
       )}
 
       {/* Navigation */}
       <div className="flex justify-between">
         <button
-          onClick={() => useStepFlow.getState().prevStep()}
+          onClick={prevStep}
           className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
         >
           이전 단계
@@ -220,11 +343,11 @@ export default function Step2CreativeInput() {
 
         <button
           onClick={nextStep}
-          disabled={!analyzed}
+          disabled={!userInput.trim()}
           className={`
             px-8 py-3 rounded-lg font-semibold transition-all
             ${
-              analyzed
+              userInput.trim()
                 ? 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg'
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }
