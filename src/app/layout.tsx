@@ -17,13 +17,7 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body className="antialiased bg-white dark:bg-gray-900 transition-colors">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem={true}
-          storageKey="acac-theme"
-          disableTransitionOnChange={false}
-        >
+        <ThemeProvider>
           <SessionProvider>
             {children}
             <ThemeToggle />
