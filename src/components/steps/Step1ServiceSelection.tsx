@@ -5,6 +5,14 @@ import { useStepFlow } from '@/hooks/useStepFlow';
 import type { Service } from '@/types';
 import { Sparkles } from 'lucide-react';
 
+// Service icon mapping
+const serviceIcons: Record<string, { emoji: string; bgColor: string; bgColorDark: string }> = {
+  snack24: { emoji: '🍪', bgColor: 'bg-orange-100', bgColorDark: 'dark:bg-orange-900/30' },
+  breakfast24: { emoji: '🥗', bgColor: 'bg-green-100', bgColorDark: 'dark:bg-green-900/30' },
+  coffee24: { emoji: '☕', bgColor: 'bg-amber-100', bgColorDark: 'dark:bg-amber-900/30' },
+  birthday24: { emoji: '🎁', bgColor: 'bg-pink-100', bgColorDark: 'dark:bg-pink-900/30' },
+};
+
 export default function Step1ServiceSelection() {
   const { selectedService, setSelectedService, nextStep } = useStepFlow();
   const [services, setServices] = useState<Service[]>([]);
@@ -73,19 +81,20 @@ export default function Step1ServiceSelection() {
                 ${
                   selectedService?.id === service.id
                     ? 'border-blue-600 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/30 shadow-lg'
-                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700/50 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md'
+                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md'
                 }
               `}
             >
-              {service.thumbnail && (
-                <div className="w-full h-32 mb-4 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
-                  <img
-                    src={service.thumbnail}
-                    alt={service.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              )}
+              {/* Service Icon */}
+              <div className={`w-full h-32 mb-4 rounded-lg flex items-center justify-center ${
+                serviceIcons[service.id]?.bgColor || 'bg-gray-100'
+              } ${
+                serviceIcons[service.id]?.bgColorDark || 'dark:bg-gray-800'
+              }`}>
+                <span className="text-6xl">
+                  {serviceIcons[service.id]?.emoji || '📦'}
+                </span>
+              </div>
 
               <div className="flex items-start justify-between mb-2">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">

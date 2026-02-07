@@ -204,7 +204,7 @@ export default function Step3BriefGeneration() {
           </div>
 
           {/* Brief Content */}
-          <div className="bg-white dark:bg-gray-700/50 border-2 border-gray-200 dark:border-gray-600 rounded-xl p-6 space-y-6">
+          <div className="bg-gray-50 dark:bg-gray-700/50 border-2 border-gray-200 dark:border-gray-600 rounded-xl p-6 space-y-6">
             {/* Headline */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">

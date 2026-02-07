@@ -111,7 +111,7 @@ export default function Step6ResultDownload() {
             {activeChannel.images.map((image, index) => (
               <div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-700/50 rounded-lg border-2 border-gray-200 dark:border-gray-600 overflow-hidden hover:shadow-lg transition-shadow"
+                className="bg-white dark:bg-gray-700/50 rounded-lg border-2 border-gray-200 dark:border-gray-600 overflow-hidden hover:shadow-lg transition-shadow"
               >
                 {/* Image Preview */}
                 <div

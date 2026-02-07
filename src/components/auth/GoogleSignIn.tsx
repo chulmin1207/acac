@@ -4,8 +4,8 @@ import { signIn } from 'next-auth/react';
 
 export default function GoogleSignIn() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-100 dark:border-gray-700 max-w-md w-full">
         <h1 className="text-3xl font-bold text-center mb-2 text-gray-800 dark:text-gray-100">
           ACAC
         </h1>

@@ -157,7 +157,7 @@ export default function Step5ChannelAdaptation() {
                     ${
                       selectedChannelIds.includes(channel.id)
                         ? 'border-blue-600 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/30 shadow-md'
-                        : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700/50 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-sm'
+                        : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-sm'
                     }
                   `}
                 >

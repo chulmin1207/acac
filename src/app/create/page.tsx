@@ -25,7 +25,7 @@ export default function CreatePage() {
 
   return (
     <AuthGuard>
-      <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors">
+      <main className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-850 dark:to-gray-900 transition-colors">
         <div className="container mx-auto px-4 py-8 max-w-7xl">
           {/* Header */}
           <header className="text-center mb-8">
@@ -44,7 +44,7 @@ export default function CreatePage() {
           <StepIndicator currentStep={currentStep} steps={STEPS} />
 
           {/* Step Content */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 transition-colors">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-8 transition-colors">
             {currentStep === 1 && <Step1ServiceSelection />}
             {currentStep === 2 && <Step2CreativeInput />}
             {currentStep === 3 && <Step3BriefGeneration />}

@@ -214,10 +214,10 @@ export default function Step2CreativeInput() {
             transition-all duration-300 ease-in-out
             ${
               isDragActive || isPasteActive
-                ? 'border-blue-600 dark:border-blue-400 bg-blue-100 dark:bg-blue-900/30 scale-110 shadow-2xl ring-8 ring-blue-300 dark:ring-blue-800 animate-pulse'
+                ? 'border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-blue-900/30 scale-110 shadow-2xl ring-8 ring-blue-200 dark:ring-blue-800 animate-pulse'
                 : uploading
-                ? 'border-green-500 dark:border-green-400 bg-green-100 dark:bg-green-900/30 animate-pulse ring-4 ring-green-300 dark:ring-green-800'
-                : 'border-gray-300 dark:border-gray-600 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/10'
+                ? 'border-green-500 dark:border-green-400 bg-green-50 dark:bg-green-900/30 animate-pulse ring-4 ring-green-200 dark:ring-green-800'
+                : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/10'
             }
           `}
           onClick={() => document.getElementById('file-input')?.click()}

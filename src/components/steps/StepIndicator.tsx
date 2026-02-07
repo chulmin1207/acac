@@ -13,7 +13,7 @@ interface StepIndicatorProps {
 
 export default function StepIndicator({ currentStep, steps }: StepIndicatorProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-6 transition-colors">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 p-6 mb-6 transition-colors">
       <div className="flex items-center justify-between">
         {steps.map((step, index) => (
           <div key={step.number} className="flex items-center flex-1">
