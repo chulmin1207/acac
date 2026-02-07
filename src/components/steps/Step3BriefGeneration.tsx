@@ -18,6 +18,7 @@ export default function Step3BriefGeneration() {
   const [generating, setGenerating] = useState(false);
   const [editing, setEditing] = useState(false);
   const [editedBrief, setEditedBrief] = useState(brief);
+  const [targetPlatform, setTargetPlatform] = useState<'naver' | 'meta' | 'youtube'>('meta');
 
   const handleGenerate = async () => {
     if (!selectedService) {
@@ -34,6 +35,7 @@ export default function Step3BriefGeneration() {
           serviceId: selectedService.id,
           userInput,
           referenceAnalysis,
+          targetPlatform,
         }),
       });
 
@@ -86,34 +88,94 @@ export default function Step3BriefGeneration() {
       </div>
 
       {!brief ? (
-        <div className="text-center py-12">
-          <button
-            onClick={handleGenerate}
-            disabled={generating}
-            className={`
-              inline-flex items-center gap-3 px-8 py-4 rounded-xl font-semibold text-lg transition-all
-              ${
-                generating
-                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-xl hover:scale-105'
-              }
-            `}
-          >
-            {generating ? (
-              <>
-                <Loader2 className="w-6 h-6 animate-spin" />
-                기획안 생성 중...
-              </>
-            ) : (
-              <>
-                <Sparkles className="w-6 h-6" />
-                기획안 생성하기
-              </>
-            )}
-          </button>
-          <p className="text-sm text-gray-500 mt-4">
-            Claude AI가 최적의 광고 기획안을 작성합니다
-          </p>
+        <div className="max-w-2xl mx-auto space-y-8">
+          {/* Platform Selection */}
+          <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
+            <h3 className="font-bold text-lg text-blue-900 mb-4">
+              타겟 플랫폼 선택
+            </h3>
+            <p className="text-sm text-gray-700 mb-4">
+              선택한 플랫폼에 최적화된 훅과 카피 스타일로 기획안을 생성합니다
+            </p>
+            <div className="grid grid-cols-3 gap-4">
+              <button
+                onClick={() => setTargetPlatform('meta')}
+                className={`
+                  p-4 rounded-lg border-2 transition-all
+                  ${
+                    targetPlatform === 'meta'
+                      ? 'border-blue-600 bg-blue-100 shadow-md'
+                      : 'border-gray-300 bg-white hover:border-blue-400'
+                  }
+                `}
+              >
+                <div className="font-bold text-gray-900 mb-1">메타</div>
+                <div className="text-xs text-gray-600">인스타/페북</div>
+                <div className="text-xs text-gray-500 mt-1">공감형·친근</div>
+              </button>
+              <button
+                onClick={() => setTargetPlatform('naver')}
+                className={`
+                  p-4 rounded-lg border-2 transition-all
+                  ${
+                    targetPlatform === 'naver'
+                      ? 'border-green-600 bg-green-100 shadow-md'
+                      : 'border-gray-300 bg-white hover:border-green-400'
+                  }
+                `}
+              >
+                <div className="font-bold text-gray-900 mb-1">네이버</div>
+                <div className="text-xs text-gray-600">SA/GFA</div>
+                <div className="text-xs text-gray-500 mt-1">신뢰·숫자</div>
+              </button>
+              <button
+                onClick={() => setTargetPlatform('youtube')}
+                className={`
+                  p-4 rounded-lg border-2 transition-all
+                  ${
+                    targetPlatform === 'youtube'
+                      ? 'border-red-600 bg-red-100 shadow-md'
+                      : 'border-gray-300 bg-white hover:border-red-400'
+                  }
+                `}
+              >
+                <div className="font-bold text-gray-900 mb-1">유튜브</div>
+                <div className="text-xs text-gray-600">쇼츠/인스트림</div>
+                <div className="text-xs text-gray-500 mt-1">스토리텔링</div>
+              </button>
+            </div>
+          </div>
+
+          {/* Generate Button */}
+          <div className="text-center">
+            <button
+              onClick={handleGenerate}
+              disabled={generating}
+              className={`
+                inline-flex items-center gap-3 px-8 py-4 rounded-xl font-semibold text-lg transition-all
+                ${
+                  generating
+                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-xl hover:scale-105'
+                }
+              `}
+            >
+              {generating ? (
+                <>
+                  <Loader2 className="w-6 h-6 animate-spin" />
+                  기획안 생성 중...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="w-6 h-6" />
+                  기획안 생성하기
+                </>
+              )}
+            </button>
+            <p className="text-sm text-gray-500 mt-4">
+              Claude AI가 {targetPlatform === 'meta' ? '메타' : targetPlatform === 'naver' ? '네이버' : '유튜브'}에 최적화된 광고 기획안을 작성합니다
+            </p>
+          </div>
         </div>
       ) : (
         <div className="space-y-6">

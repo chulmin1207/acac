@@ -1,23 +1,36 @@
 import Anthropic from '@anthropic-ai/sdk';
 import type { Service, Brief, ReferenceAnalysis } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
+import { getHookContext } from '@/lib/utils/hooks-selector';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY || '',
 });
 
 /**
- * Generate creative brief using Claude
+ * Generate creative brief using Claude with hook-based optimization
  */
 export async function generateBrief(
   service: Service,
   userInput: string,
-  referenceAnalysis: ReferenceAnalysis | null
+  referenceAnalysis: ReferenceAnalysis | null,
+  targetPlatform: 'naver' | 'meta' | 'youtube' = 'meta'
 ): Promise<Brief> {
   const { getBriefGenerationPrompt } = await import('./prompts/brief-generation');
-  const promptText = getBriefGenerationPrompt(service, userInput, referenceAnalysis);
 
   try {
+    // Load hook context for the selected service and platform
+    const hookContext = await getHookContext(service.id, targetPlatform);
+
+    // Generate prompt with hook context
+    const promptText = getBriefGenerationPrompt(
+      service,
+      userInput,
+      referenceAnalysis,
+      hookContext,
+      targetPlatform
+    );
+
     const message = await anthropic.messages.create({
       model: 'claude-3-5-sonnet-20241022',
       max_tokens: 2048,
@@ -63,12 +76,23 @@ export async function generateBrief(
   } catch (error) {
     console.error('Claude brief generation error:', error);
 
-    // Return fallback brief
+    // Return fallback brief with service-specific data
+    const fallbackHeadline =
+      service.id === 'snack24'
+        ? '5,000가지 간식, 골라 먹는 재미'
+        : service.id === 'breakfast24'
+        ? '새벽 배송 + 냉장고 진열까지 완료'
+        : service.id === 'coffee24'
+        ? '한 잔 198원, 카페 대비 96% 절감'
+        : service.id === 'birthday24'
+        ? '직원이 직접 받고 싶은 선물 선택'
+        : `${service.name}의 특별한 혜택`;
+
     return {
       id: uuidv4(),
       serviceId: service.id,
-      headline: `${service.name}의 특별한 혜택`,
-      subHeadline: userInput || '지금 바로 만나보세요',
+      headline: fallbackHeadline,
+      subHeadline: service.tagline || userInput || '지금 바로 만나보세요',
       keyMessages: [
         '최고의 품질과 서비스',
         '합리적인 가격',

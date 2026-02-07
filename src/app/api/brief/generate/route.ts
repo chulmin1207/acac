@@ -8,7 +8,7 @@ import { getServiceById } from '@/lib/db/services';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { serviceId, userInput, referenceAnalysis } = body;
+    const { serviceId, userInput, referenceAnalysis, targetPlatform } = body;
 
     if (!serviceId) {
       return NextResponse.json(
@@ -24,6 +24,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate targetPlatform
+    const platform = targetPlatform || 'meta';
+    if (!['naver', 'meta', 'youtube'].includes(platform)) {
+      return NextResponse.json(
+        { error: 'Invalid target platform. Must be naver, meta, or youtube' },
+        { status: 400 }
+      );
+    }
+
     // Get service details
     const service = await getServiceById(serviceId);
     if (!service) {
@@ -33,12 +42,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate brief
-    const brief = await generateBrief(service, userInput, referenceAnalysis || null);
+    // Generate brief with hook-based optimization
+    const brief = await generateBrief(
+      service,
+      userInput,
+      referenceAnalysis || null,
+      platform as 'naver' | 'meta' | 'youtube'
+    );
 
     return NextResponse.json({
       success: true,
       brief,
+      platform,
     });
   } catch (error) {
     console.error('Brief generation error:', error);

@@ -6,6 +6,9 @@ export interface Service {
   name: string;
   description: string;
   category: string;
+  tagline?: string;
+  url?: string;
+  ctaUrl?: string;
   keywords: string[];
   thumbnail?: string;
   isActive: boolean;
