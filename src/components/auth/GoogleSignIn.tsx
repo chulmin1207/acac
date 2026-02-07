@@ -4,18 +4,18 @@ import { signIn } from 'next-auth/react';
 
 export default function GoogleSignIn() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h1 className="text-3xl font-bold text-center mb-2 text-gray-800">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 className="text-3xl font-bold text-center mb-2 text-gray-800 dark:text-gray-100">
           ACAC
         </h1>
-        <p className="text-center text-gray-600 mb-8">
+        <p className="text-center text-gray-600 dark:text-gray-400 mb-8">
           AI Creative Automation Center
         </p>
 
         <button
           onClick={() => signIn('google', { callbackUrl: '/create' })}
-          className="w-full bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors flex items-center justify-center gap-3"
+          className="w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors flex items-center justify-center gap-3"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24">
             <path
@@ -38,7 +38,7 @@ export default function GoogleSignIn() {
           Continue with Google
         </button>
 
-        <p className="text-sm text-gray-500 text-center mt-4">
+        <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-4">
           Only @snack24h.com accounts are allowed
         </p>
       </div>

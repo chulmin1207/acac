@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import SessionProvider from "@/components/auth/SessionProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const metadata: Metadata = {
   title: "ACAC - AI Creative Automation Center",
@@ -13,11 +15,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className="antialiased">
-        <SessionProvider>
-          {children}
-        </SessionProvider>
+    <html lang="ko" suppressHydrationWarning>
+      <body className="antialiased bg-white dark:bg-gray-900 transition-colors">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          storageKey="acac-theme"
+          disableTransitionOnChange={false}
+        >
+          <SessionProvider>
+            {children}
+            <ThemeToggle />
+          </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

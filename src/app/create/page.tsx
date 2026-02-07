@@ -25,17 +25,17 @@ export default function CreatePage() {
 
   return (
     <AuthGuard>
-      <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors">
         <div className="container mx-auto px-4 py-8 max-w-7xl">
           {/* Header */}
           <header className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-2">
-              <Sparkles className="w-8 h-8 text-blue-600" />
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <Sparkles className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
                 ACAC
               </h1>
             </div>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               AI Creative Automation Center
             </p>
           </header>
@@ -44,7 +44,7 @@ export default function CreatePage() {
           <StepIndicator currentStep={currentStep} steps={STEPS} />
 
           {/* Step Content */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 transition-colors">
             {currentStep === 1 && <Step1ServiceSelection />}
             {currentStep === 2 && <Step2CreativeInput />}
             {currentStep === 3 && <Step3BriefGeneration />}

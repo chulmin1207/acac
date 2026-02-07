@@ -41,7 +41,7 @@ export default function Step1ServiceSelection() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 dark:border-blue-400"></div>
       </div>
     );
   }
@@ -49,16 +49,16 @@ export default function Step1ServiceSelection() {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
           서비스 선택
         </h2>
-        <p className="text-gray-600">
+        <p className="text-gray-600 dark:text-gray-400">
           광고 소재를 생성할 서비스를 선택하세요
         </p>
       </div>
 
       {services.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-gray-500 dark:text-gray-400">
           <p>등록된 서비스가 없습니다.</p>
           <p className="text-sm mt-2">관리자 페이지에서 서비스를 추가해주세요.</p>
         </div>
@@ -72,13 +72,13 @@ export default function Step1ServiceSelection() {
                 p-6 rounded-xl border-2 transition-all text-left
                 ${
                   selectedService?.id === service.id
-                    ? 'border-blue-600 bg-blue-50 shadow-lg'
-                    : 'border-gray-200 bg-white hover:border-blue-300 hover:shadow-md'
+                    ? 'border-blue-600 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/30 shadow-lg'
+                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700/50 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md'
                 }
               `}
             >
               {service.thumbnail && (
-                <div className="w-full h-32 mb-4 bg-gray-100 rounded-lg overflow-hidden">
+                <div className="w-full h-32 mb-4 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
                   <img
                     src={service.thumbnail}
                     alt={service.name}
@@ -88,15 +88,15 @@ export default function Step1ServiceSelection() {
               )}
 
               <div className="flex items-start justify-between mb-2">
-                <h3 className="text-xl font-bold text-gray-900">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
                   {service.name}
                 </h3>
                 {selectedService?.id === service.id && (
-                  <Sparkles className="w-5 h-5 text-blue-600" />
+                  <Sparkles className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 )}
               </div>
 
-              <p className="text-sm text-gray-600 mb-3">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                 {service.description}
               </p>
 
@@ -104,7 +104,7 @@ export default function Step1ServiceSelection() {
                 {service.keywords.slice(0, 3).map((keyword, idx) => (
                   <span
                     key={idx}
-                    className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded"
+                    className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded"
                   >
                     #{keyword}
                   </span>
@@ -123,8 +123,8 @@ export default function Step1ServiceSelection() {
             px-8 py-3 rounded-lg font-semibold transition-all
             ${
               selectedService
-                ? 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg'
-                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                ? 'bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-600 hover:shadow-lg'
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
             }
           `}
         >

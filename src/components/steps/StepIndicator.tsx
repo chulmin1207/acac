@@ -13,7 +13,7 @@ interface StepIndicatorProps {
 
 export default function StepIndicator({ currentStep, steps }: StepIndicatorProps) {
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-6 transition-colors">
       <div className="flex items-center justify-between">
         {steps.map((step, index) => (
           <div key={step.number} className="flex items-center flex-1">
@@ -24,10 +24,10 @@ export default function StepIndicator({ currentStep, steps }: StepIndicatorProps
                   w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all
                   ${
                     currentStep > step.number
-                      ? 'bg-green-500 text-white'
+                      ? 'bg-green-500 dark:bg-green-600 text-white'
                       : currentStep === step.number
-                      ? 'bg-blue-600 text-white ring-4 ring-blue-100'
-                      : 'bg-gray-200 text-gray-500'
+                      ? 'bg-blue-600 dark:bg-blue-500 text-white ring-4 ring-blue-100 dark:ring-blue-900'
+                      : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
                   }
                 `}
               >
@@ -44,8 +44,8 @@ export default function StepIndicator({ currentStep, steps }: StepIndicatorProps
                   text-xs mt-2 font-medium text-center
                   ${
                     currentStep >= step.number
-                      ? 'text-gray-900'
-                      : 'text-gray-400'
+                      ? 'text-gray-900 dark:text-gray-100'
+                      : 'text-gray-400 dark:text-gray-500'
                   }
                 `}
               >
@@ -58,7 +58,7 @@ export default function StepIndicator({ currentStep, steps }: StepIndicatorProps
               <div
                 className={`
                   flex-1 h-0.5 mx-4 transition-colors
-                  ${currentStep > step.number ? 'bg-green-500' : 'bg-gray-200'}
+                  ${currentStep > step.number ? 'bg-green-500 dark:bg-green-600' : 'bg-gray-200 dark:bg-gray-700'}
                 `}
               />
             )}

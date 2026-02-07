@@ -13,7 +13,7 @@ export default function Step6ResultDownload() {
   if (!creative) {
     return (
       <div className="text-center py-20">
-        <p className="text-gray-600">생성된 소재가 없습니다.</p>
+        <p className="text-gray-600 dark:text-gray-400">생성된 소재가 없습니다.</p>
       </div>
     );
   }
@@ -66,17 +66,17 @@ export default function Step6ResultDownload() {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
           광고 소재 제작 완료
         </h2>
-        <p className="text-gray-600">
+        <p className="text-gray-600 dark:text-gray-400">
           채널별로 최적화된 광고 소재를 다운로드하세요
         </p>
       </div>
 
       {/* Channel Tabs */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-8">
-        <div className="border-b border-gray-200">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 mb-8">
+        <div className="border-b border-gray-200 dark:border-gray-700">
           <div className="flex overflow-x-auto">
             {creative.channelCreatives.map((channel, index) => (
               <button
@@ -86,8 +86,8 @@ export default function Step6ResultDownload() {
                   px-6 py-4 font-semibold whitespace-nowrap border-b-2 transition-colors
                   ${
                     activeChannelIndex === index
-                      ? 'border-blue-600 text-blue-600'
-                      : 'border-transparent text-gray-600 hover:text-gray-900'
+                      ? 'border-blue-600 dark:border-blue-500 text-blue-600 dark:text-blue-400'
+                      : 'border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                   }
                 `}
               >
@@ -102,7 +102,7 @@ export default function Step6ResultDownload() {
 
         {/* Channel Content */}
         <div className="p-8">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">
             {activeChannel.channelName} - {activeChannel.images.length}개 사이즈
           </h3>
 
@@ -111,21 +111,21 @@ export default function Step6ResultDownload() {
             {activeChannel.images.map((image, index) => (
               <div
                 key={index}
-                className="bg-gray-50 rounded-lg border-2 border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
+                className="bg-gray-50 dark:bg-gray-700/50 rounded-lg border-2 border-gray-200 dark:border-gray-600 overflow-hidden hover:shadow-lg transition-shadow"
               >
                 {/* Image Preview */}
                 <div
-                  className="bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center"
+                  className="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 flex items-center justify-center"
                   style={{
                     aspectRatio: `${image.width}/${image.height}`,
                     minHeight: '200px',
                   }}
                 >
                   <div className="text-center">
-                    <p className="text-4xl font-bold text-gray-400 mb-2">
+                    <p className="text-4xl font-bold text-gray-400 dark:text-gray-500 mb-2">
                       {image.size}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
                       {image.width} × {image.height}
                     </p>
                   </div>
@@ -140,7 +140,7 @@ export default function Step6ResultDownload() {
                         `${activeChannel.channelName}_${image.size}_${image.width}x${image.height}.png`
                       )
                     }
-                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
                   >
                     <Download className="w-5 h-5" />
                     다운로드
@@ -157,7 +157,7 @@ export default function Step6ResultDownload() {
         <button
           onClick={handleDownloadAll}
           disabled={downloadingAll}
-          className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-xl font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-600 to-blue-600 dark:from-green-500 dark:to-blue-500 text-white rounded-xl font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Package className="w-6 h-6" />
           {downloadingAll ? '다운로드 중...' : '전체 다운로드 (ZIP)'}
@@ -165,33 +165,33 @@ export default function Step6ResultDownload() {
       </div>
 
       {/* Summary Info */}
-      <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 mb-8">
-        <h4 className="font-bold text-lg text-blue-900 mb-3">생성 요약</h4>
+      <div className="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 mb-8">
+        <h4 className="font-bold text-lg text-blue-900 dark:text-blue-300 mb-3">생성 요약</h4>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           <div>
-            <p className="text-2xl font-bold text-blue-600">
+            <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
               {creative.channelCreatives.length}
             </p>
-            <p className="text-sm text-gray-700">채널</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">채널</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-blue-600">
+            <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
               {creative.channelCreatives.reduce(
                 (sum, ch) => sum + ch.images.length,
                 0
               )}
             </p>
-            <p className="text-sm text-gray-700">총 이미지</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">총 이미지</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-blue-600">
+            <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
               {new Date(creative.createdAt).toLocaleDateString('ko-KR')}
             </p>
-            <p className="text-sm text-gray-700">생성일</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">생성일</p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-blue-600">{creative.status}</p>
-            <p className="text-sm text-gray-700">상태</p>
+            <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">{creative.status}</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">상태</p>
           </div>
         </div>
       </div>
@@ -200,14 +200,14 @@ export default function Step6ResultDownload() {
       <div className="flex justify-between">
         <button
           onClick={prevStep}
-          className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+          className="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
         >
           이전 단계
         </button>
 
         <button
           onClick={reset}
-          className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
+          className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
         >
           새 소재 만들기
         </button>

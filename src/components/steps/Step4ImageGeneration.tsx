@@ -86,21 +86,21 @@ export default function Step4ImageGeneration() {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
           이미지 생성
         </h2>
-        <p className="text-gray-600">
+        <p className="text-gray-600 dark:text-gray-400">
           AI가 3가지 버전의 이미지를 생성합니다
         </p>
       </div>
 
       {generating ? (
         <div className="text-center py-20">
-          <Loader2 className="w-16 h-16 text-blue-600 animate-spin mx-auto mb-4" />
-          <p className="text-lg font-semibold text-gray-900">
+          <Loader2 className="w-16 h-16 text-blue-600 dark:text-blue-400 animate-spin mx-auto mb-4" />
+          <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">
             이미지 생성 중...
           </p>
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
             3개의 이미지를 동시에 생성하고 있습니다
           </p>
         </div>
@@ -115,24 +115,24 @@ export default function Step4ImageGeneration() {
                   relative rounded-xl overflow-hidden border-4 cursor-pointer transition-all
                   ${
                     selectedImage?.id === image.id
-                      ? 'border-blue-600 shadow-xl scale-105'
-                      : 'border-gray-200 hover:border-blue-300 hover:shadow-lg'
+                      ? 'border-blue-600 dark:border-blue-500 shadow-xl scale-105'
+                      : 'border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-lg'
                   }
                 `}
                 onClick={() => setSelectedImage(image)}
               >
                 {/* Placeholder Image */}
-                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 flex items-center justify-center">
                   <div className="text-center p-6">
-                    <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-3xl font-bold text-gray-500">
+                    <div className="w-20 h-20 bg-gray-300 dark:bg-gray-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <span className="text-3xl font-bold text-gray-500 dark:text-gray-300">
                         {image.variant}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-600 font-medium">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 font-medium">
                       버전 {image.variant}
                     </p>
-                    <p className="text-xs text-gray-500 mt-2">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
                       이미지 생성 API 연동 필요
                     </p>
                   </div>
@@ -140,13 +140,13 @@ export default function Step4ImageGeneration() {
 
                 {/* Selection Indicator */}
                 {selectedImage?.id === image.id && (
-                  <div className="absolute top-4 right-4 bg-blue-600 text-white p-2 rounded-full">
+                  <div className="absolute top-4 right-4 bg-blue-600 dark:bg-blue-500 text-white p-2 rounded-full">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                 )}
 
                 {/* Select Button */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 dark:from-black/80 to-transparent p-4">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -156,8 +156,8 @@ export default function Step4ImageGeneration() {
                       w-full py-2 rounded-lg font-semibold transition-colors
                       ${
                         selectedImage?.id === image.id
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-white text-gray-900 hover:bg-gray-100'
+                          ? 'bg-blue-600 dark:bg-blue-500 text-white'
+                          : 'bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600'
                       }
                     `}
                   >
@@ -173,7 +173,7 @@ export default function Step4ImageGeneration() {
             <button
               onClick={handleRegenerate}
               disabled={generating}
-              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-purple-600 text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-purple-600 dark:border-purple-500 text-purple-600 dark:text-purple-400 rounded-lg font-semibold hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <RefreshCw className="w-5 h-5" />
               새로운 이미지 3개 생성
@@ -182,11 +182,11 @@ export default function Step4ImageGeneration() {
 
           {/* Selected Image Info */}
           {selectedImage && (
-            <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 mb-8">
-              <h3 className="font-bold text-lg mb-2 text-blue-900">
+            <div className="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 mb-8">
+              <h3 className="font-bold text-lg mb-2 text-blue-900 dark:text-blue-300">
                 선택된 이미지: 버전 {selectedImage.variant}
               </h3>
-              <p className="text-sm text-blue-700">
+              <p className="text-sm text-blue-700 dark:text-blue-400">
                 이 이미지를 기반으로 채널별 광고 소재를 제작합니다
               </p>
             </div>
@@ -194,10 +194,10 @@ export default function Step4ImageGeneration() {
         </>
       ) : (
         <div className="text-center py-20">
-          <p className="text-gray-500 mb-4">이미지를 생성하지 못했습니다</p>
+          <p className="text-gray-500 dark:text-gray-400 mb-4">이미지를 생성하지 못했습니다</p>
           <button
             onClick={handleGenerate}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
           >
             이미지 생성 시작
           </button>
@@ -208,7 +208,7 @@ export default function Step4ImageGeneration() {
       <div className="flex justify-between">
         <button
           onClick={prevStep}
-          className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+          className="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
         >
           이전 단계
         </button>
@@ -220,8 +220,8 @@ export default function Step4ImageGeneration() {
             px-8 py-3 rounded-lg font-semibold transition-all
             ${
               selectedImage
-                ? 'bg-green-600 text-white hover:bg-green-700 hover:shadow-lg'
-                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                ? 'bg-green-600 dark:bg-green-500 text-white hover:bg-green-700 dark:hover:bg-green-600 hover:shadow-lg'
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
             }
           `}
         >
