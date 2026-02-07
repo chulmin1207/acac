@@ -41,31 +41,46 @@ export default function Step2CreativeInput() {
 
   // Handle paste event
   useEffect(() => {
-    const handlePaste = (e: ClipboardEvent) => {
+    const handlePaste = async (e: ClipboardEvent) => {
+      console.log('Paste event triggered', e.clipboardData);
+
       const items = e.clipboardData?.items;
-      if (!items) return;
+      if (!items) {
+        console.log('No clipboard items');
+        return;
+      }
 
       const imageFiles: File[] = [];
       for (let i = 0; i < items.length; i++) {
+        console.log(`Item ${i}:`, items[i].type);
         if (items[i].type.startsWith('image/')) {
           const file = items[i].getAsFile();
           if (file) {
+            console.log('Image file found:', file.name, file.type);
             imageFiles.push(file);
           }
         }
       }
 
       if (imageFiles.length > 0) {
+        console.log('Processing', imageFiles.length, 'image(s)');
         e.preventDefault();
         setIsPasteActive(true);
-        setTimeout(() => setIsPasteActive(false), 600);
+        setTimeout(() => setIsPasteActive(false), 1200);
         const fileList = createFileList(imageFiles);
-        handleFileUpload(fileList);
+        await handleFileUpload(fileList);
+      } else {
+        console.log('No image files found in clipboard');
       }
     };
 
-    window.addEventListener('paste', handlePaste);
-    return () => window.removeEventListener('paste', handlePaste);
+    document.addEventListener('paste', handlePaste);
+    console.log('Paste event listener added');
+
+    return () => {
+      document.removeEventListener('paste', handlePaste);
+      console.log('Paste event listener removed');
+    };
   }, []);
 
   // Create FileList from File array
@@ -182,7 +197,7 @@ export default function Step2CreativeInput() {
           onChange={(e) => setUserInput(e.target.value)}
           placeholder={placeholder}
           rows={4}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-gray-900 placeholder:text-gray-500 placeholder:font-medium"
         />
       </div>
 
@@ -199,9 +214,9 @@ export default function Step2CreativeInput() {
             transition-all duration-300 ease-in-out
             ${
               isDragActive || isPasteActive
-                ? 'border-blue-500 bg-blue-50 scale-105 shadow-lg ring-4 ring-blue-200 animate-pulse'
+                ? 'border-blue-600 bg-blue-100 scale-110 shadow-2xl ring-8 ring-blue-300 animate-pulse'
                 : uploading
-                ? 'border-green-400 bg-green-50 animate-pulse'
+                ? 'border-green-500 bg-green-100 animate-pulse ring-4 ring-green-300'
                 : 'border-gray-300 hover:border-blue-400 hover:bg-blue-50'
             }
           `}
@@ -236,10 +251,12 @@ export default function Step2CreativeInput() {
               <p className="text-xs text-gray-400 mb-2">
                 PNG, JPG, WebP (최대 10MB)
               </p>
-              <p className="text-xs text-blue-500 font-semibold flex items-center justify-center gap-1">
-                <Clipboard className="w-3 h-3" />
-                이미지 복사 후 Ctrl+V (붙여넣기)로도 업로드 가능
-              </p>
+              <div className="mt-3 pt-3 border-t border-gray-200">
+                <p className="text-sm text-blue-600 font-bold flex items-center justify-center gap-2 animate-bounce">
+                  <Clipboard className="w-4 h-4" />
+                  💡 이미지 복사 후 Ctrl+V 로 바로 업로드!
+                </p>
+              </div>
             </>
           )}
           <input
